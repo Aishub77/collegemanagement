@@ -1,0 +1,102 @@
+/* Font setup */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.register-container {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.register-heading {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 26px;
+}
+
+.register-label {
+  font-weight: 600;
+  display: block;
+  color: #444;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.register-input,
+.register-select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.register-input:focus,
+.register-select:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0077ff, #0055cc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.register-button:hover {
+  background: linear-gradient(135deg, #0055cc, #003e99);
+}
+
+.register-message {
+  margin-top: 20px;
+  text-align: center;
+  color: green;
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.input-group input,
+.input-group select {
+  padding-left: 36px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 500px) {
+  .register-container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .register-heading {
+    font-size: 22px;
+  }
+
+  .register-button {
+    font-size: 15px;
+  }
+}

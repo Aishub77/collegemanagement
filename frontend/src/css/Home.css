@@ -1,0 +1,42 @@
+/* Overlay common */
+.banner-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.5); /* dark overlay */
+  color: white;
+}
+
+/* Alignment classes */
+.align-top-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.align-top-right {
+  justify-content: flex-start;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.align-bottom-left {
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.align-bottom-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.align-center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

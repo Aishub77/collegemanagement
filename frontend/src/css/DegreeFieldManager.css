@@ -1,0 +1,274 @@
+/* DegreeFieldManager.css */
+
+.df-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2d3436;
+}
+
+.df-container h2 {
+  text-align: center;
+  color: #0984e3;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.df-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.df-form {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.df-form:hover {
+  transform: translateY(-5px);
+}
+
+.df-form h3 {
+  margin-top: 0;
+  color: #0984e3;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #dfe6e9;
+}
+
+.df-form input,
+.df-form select {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: #f8f9fa;
+}
+
+.df-form input:focus,
+.df-form select:focus {
+  outline: none;
+  border-color: #74b9ff;
+  box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.2);
+  background-color: white;
+}
+
+.df-form button {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.df-form button:hover {
+  background-color: #00a884;
+  box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+.df-table-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+}
+
+.df-table-container h3 {
+  margin-top: 0;
+  color: #0984e3;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.df-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.df-table thead th {
+  background-color: #0984e3;
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+}
+
+.df-table thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.df-table thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.df-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.df-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.df-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #dfe6e9;
+  vertical-align: top;
+}
+
+.df-table td:first-child {
+  font-weight: 600;
+  color: #2d3436;
+  width: 30%;
+}
+
+.degree-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.degree-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.degree-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.field-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.field-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+}
+
+.field-item:not(:last-child) {
+  border-bottom: 1px dashed #dfe6e9;
+}
+
+.field-name {
+  flex-grow: 1;
+}
+
+.field-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-edit {
+  background-color: #0984e3;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #d63031;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.empty-fields {
+  color: #b2bec3;
+  font-style: italic;
+}
+
+/* Icons */
+.icon {
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .df-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .df-table thead {
+    display: none;
+  }
+  
+  .df-table tr {
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .df-table td {
+    display: block;
+    padding: 0.5rem 0;
+    border-bottom: none;
+  }
+  
+  .df-table td:first-child {
+    width: 100%;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #dfe6e9;
+  }
+  
+  .degree-actions,
+  .field-actions {
+    justify-content: flex-end;
+  }
+}

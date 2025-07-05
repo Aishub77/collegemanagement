@@ -1,0 +1,330 @@
+/* CSS for the modern login page */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.college-logo1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.crown-icon {
+  font-size: 42px;
+  margin-right: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.college-name h1 {
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #2c3e50;
+}
+
+.college-name p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.9;
+  letter-spacing: 1px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.college-motto p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4e54c8;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  width: 100%;
+  margin: 20px auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.login-illustration {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gradient-circle {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.academic-icon {
+  font-size: 80px;
+  z-index: 1;
+  color: white;
+  position: absolute;
+  left: 25%;
+  transform: translateX(-50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.book-icon {
+  font-size: 60px;
+  z-index: 1;
+  color: white;
+  position: absolute;
+  right: 25%;
+  transform: translateX(50%);
+  animation: float 5s ease-in-out infinite 0.5s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.login-form-container {
+  padding: 40px;
+}
+
+.login-title {
+  color: #2c3e50;
+  font-size: 28px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.login-subtitle {
+  color: #7b8793;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7b8793;
+  font-size: 16px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px 14px 14px 45px;
+  border: 1px solid #e1e5eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4e54c8;
+  box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+  background-color: white;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #7b8793;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  width: auto;
+  margin-right: 8px;
+}
+
+.forgot-password {
+  color: #4e54c8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #2c3e50;
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #3d42a3 0%, #7b80e6 100%);
+  box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+}
+
+.login-btn.loading {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #7b8793;
+}
+
+.signup-link a {
+  color: #4e54c8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.login-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px 0;
+  color: #7b8793;
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: #4e54c8;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  .login-card {
+    flex-direction: row;
+    height: 500px;
+  }
+  
+  .login-illustration {
+    flex: 1;
+    height: auto;
+  }
+  
+  .login-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .academic-icon {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .book-icon {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

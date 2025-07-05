@@ -1,0 +1,94 @@
+/* src/components/Sidebar.css */
+
+.sidebar {
+  width: 260px;
+  background: linear-gradient(135deg, #141E30, #243B55);
+  color: #fff;
+  height: 100vh;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-header h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.sidebar-header p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.role-badge {
+  display: inline-block;
+  background-color: #4CAF50;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.menu-title {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-title:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.submenu li {
+  padding: 8px 0;
+  font-size: 1 rem;
+  cursor: pointer;
+}
+
+.submenu li:hover {
+  color: #FFD700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    z-index: 1000;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .submenu link li {
+    color: #fff;
+    font-size: 0.9rem;
+  }
+}
