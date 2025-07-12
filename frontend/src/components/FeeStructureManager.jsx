@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +8,7 @@ const FeeStructureManager = () => {
   const [degrees, setDegrees] = useState([]);
   const [allFields, setAllFields] = useState([]);
   const [fieldsByDegree, setFieldsByDegree] = useState([]);
+  const [allComponents, setAllComponents] = useState([]);
   const [editId, setEditId] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -18,16 +19,18 @@ const FeeStructureManager = () => {
     SecondYearFee: '',
     ThirdYearFee: '',
     IsActive: true,
+    MandatoryComponentIDs: []
   });
 
   useEffect(() => {
     fetchFeeStructures();
     fetchDegrees();
     fetchAllFields();
+    fetchAllComponents();
   }, []);
 
   const fetchFeeStructures = async () => {
-    const res = await axios.get('http://localhost:5000/fee/feestructure');
+    const res = await axios.get('http://localhost:5000/fee/getfeestructure');
     setFeeStructures(res.data);
   };
 
@@ -41,6 +44,21 @@ const FeeStructureManager = () => {
     setAllFields(res.data);
   };
 
+  const fetchAllComponents = async () => {
+    const res = await axios.get('http://localhost:5000/fee/components');
+    const unique = [];
+    const seenNames = new Set();
+
+    for (let comp of res.data) {
+      if (!seenNames.has(comp.ComponentName)) {
+        unique.push(comp);
+        seenNames.add(comp.ComponentName);
+      }
+    }
+
+    setAllComponents(unique); // only unique component names
+  };
+
   const fetchFieldsByDegree = async (degreeId) => {
     const res = await axios.get(`http://localhost:5000/degree/fieldbydegree/${degreeId}`);
     setFieldsByDegree(res.data);
@@ -49,6 +67,16 @@ const FeeStructureManager = () => {
   const handleChange = async (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
+
+    if (name === 'MandatoryComponentIDs') {
+      const id = parseInt(value);
+      const updated = checked
+        ? [...formData.MandatoryComponentIDs, id]
+        : formData.MandatoryComponentIDs.filter(item => item !== id);
+
+      setFormData(prev => ({ ...prev, MandatoryComponentIDs: updated }));
+      return;
+    }
 
     setFormData((prev) => ({
       ...prev,
@@ -66,7 +94,11 @@ const FeeStructureManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { ...formData, TotalAnnualFee: calculateTotalFee() };
+    const payload = {
+      ...formData,
+      TotalAnnualFee: calculateTotalFee(),
+      MandatoryComponentIDs: formData.MandatoryComponentIDs.join(',')
+    };
 
     try {
       if (editId) {
@@ -86,6 +118,10 @@ const FeeStructureManager = () => {
   };
 
   const handleEdit = async (item) => {
+    const selectedIds = item.MandatoryComponentIDs
+      ? [...new Set(item.MandatoryComponentIDs.split(',').map(id => parseInt(id)))]
+      : [];
+
     setFormData({
       DegreeID: item.DegreeID,
       FieldID: item.FieldID,
@@ -94,6 +130,7 @@ const FeeStructureManager = () => {
       SecondYearFee: item.SecondYearFee,
       ThirdYearFee: item.ThirdYearFee,
       IsActive: item.IsActive,
+      MandatoryComponentIDs: selectedIds
     });
     setEditId(item.FeeStructureID);
     await fetchFieldsByDegree(item.DegreeID);
@@ -116,6 +153,7 @@ const FeeStructureManager = () => {
       SecondYearFee: '',
       ThirdYearFee: '',
       IsActive: true,
+      MandatoryComponentIDs: []
     });
     setEditId(null);
     setFieldsByDegree([]);
@@ -123,6 +161,19 @@ const FeeStructureManager = () => {
 
   const getDegreeName = (id) => degrees.find(d => d.DegreeID === id)?.DegreeName || '--';
   const getFieldName = (id) => allFields.find(f => f.FieldId === id)?.FieldName || '--';
+
+  const getComponentNames = (ids) => {
+    const selectedIds = [...new Set((ids?.split(',').map(id => parseInt(id.trim()))) || [])];
+
+    const selectedNames = allComponents
+      .filter(c => selectedIds.includes(c.ComponentID))
+      .map(c => c.ComponentName);
+
+    const uniqueNames = [...new Set(selectedNames)];
+
+    return uniqueNames.join(', ');
+  };
+
   return (
     <div className="container mt-4">
       <h3 className="text-center mb-4">🎓 Fee Structure Manager</h3>
@@ -145,7 +196,6 @@ const FeeStructureManager = () => {
               {fieldsByDegree.map((field) => (
                 <option key={field.FieldID} value={field.FieldID}>{field.FieldName}</option>
               ))}
-
             </select>
           </div>
           <div className="col-md-4">
@@ -173,6 +223,27 @@ const FeeStructureManager = () => {
           </div>
         </div>
 
+        <div className="mb-3">
+          <label className="form-label">Mandatory Fee Components</label>
+          <div className="row">
+            {allComponents.map(comp => (
+              <div className="col-md-4" key={comp.ComponentID}>
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    name="MandatoryComponentIDs"
+                    value={comp.ComponentID}
+                    checked={formData.MandatoryComponentIDs.includes(comp.ComponentID)}
+                    onChange={handleChange}
+                  />
+                  <label className="form-check-label">{comp.ComponentName}</label>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="form-check mb-3">
           <input type="checkbox" name="IsActive" className="form-check-input" checked={formData.IsActive} onChange={handleChange} />
           <label className="form-check-label">Is Active</label>
@@ -195,19 +266,16 @@ const FeeStructureManager = () => {
             <th>2nd Yr</th>
             <th>3rd Yr</th>
             <th>Total</th>
+            <th>Components</th>
             <th>Active</th>
-            <th>Created</th>
-            <th>Modified</th>
-            <th>Feestructurecode</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {feeStructures.length === 0 ? (
-            <tr><td colSpan="12" className="text-center">No data available</td></tr>
+            <tr><td colSpan="11" className="text-center">No data available</td></tr>
           ) : (
             feeStructures.map((fs, i) => (
-             
               <tr key={fs.FeeStructureID}>
                 <td>{i + 1}</td>
                 <td>{getDegreeName(fs.DegreeID)}</td>
@@ -217,10 +285,8 @@ const FeeStructureManager = () => {
                 <td>{fs.SecondYearFee || '-'}</td>
                 <td>{fs.ThirdYearFee || '-'}</td>
                 <td>{fs.TotalAnnualFee}</td>
+                <td>{getComponentNames(fs.MandatoryComponentIDs)}</td>
                 <td>{fs.IsActive ? '✅' : '❌'}</td>
-                <td>{new Date(fs.CreatedDate).toLocaleDateString()}</td>
-                <td>{new Date(fs.LastModified).toLocaleDateString()}</td>
-                <td>{fs.FeeStructureCode || '--'}</td>
                 <td>
                   <button className="btn btn-sm btn-warning me-1" onClick={() => handleEdit(fs)}>Edit</button>
                   <button className="btn btn-sm btn-danger" onClick={() => handleDelete(fs.FeeStructureID)}>Delete</button>

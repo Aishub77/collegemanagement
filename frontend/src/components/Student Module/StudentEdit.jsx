@@ -211,7 +211,7 @@ const StudentEdit = () => {
                       >
                         <option value="">Select Department</option>
                         {fields.map(field => (
-                          <option key={field.FieldId} value={field.FieldId}>
+                          <option key={field.FieldId} value={field.FieldName}>
                             {field.FieldName}
                           </option>
                         ))}

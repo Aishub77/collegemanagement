@@ -1,0 +1,56 @@
+.footer-wrapper {
+  background: linear-gradient(135deg, #1a3a5f, #2c5a8a);
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  padding:20px;
+}
+
+.footer-contact-card {
+ background: linear-gradient(135deg, #1a3a5f, #2c5a8a);
+  margin: 0 auto;
+  max-width: 1200px;
+  margin-top: -40px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 20px;
+  flex-wrap: wrap;
+}
+
+.footer-box {
+  max-width: 300px;
+  padding: 10px 20px;
+}
+
+.footer-box h4 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.footer-icon {
+  font-size: 24px;
+  color: red;
+}
+
+.footer-bottom-bar {
+  padding: 15px 0;
+  font-size: 14px;
+  color: #ccc;
+  background: linear-gradient(135deg, #1a3a5f, #2c5a8a);
+  border-top: 1px solid #333;
+}
+
+.footer-bottom-bar .brand {
+  color: orange;
+  font-weight: bold;
+}

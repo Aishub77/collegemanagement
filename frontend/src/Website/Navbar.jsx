@@ -2,6 +2,11 @@ import React from 'react';
 import '../css/Navbar.css'
 import logo from '../assest/newlogo1.png'; // Replace with your logo
 import Home from './Home';
+import Course from '../components/Course';
+import VisionMission from './VisionMission';
+import { Link } from 'react-router-dom';
+import PlacementStats from './PlacementStats';
+import Footer from './Footer';
 
 const Navbar = () => {
   return (
@@ -30,10 +35,10 @@ const Navbar = () => {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/about">About Us</a>
+                <Link className="nav-link" to="/About">About Us</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/courses">Courses</a>
+                <Link className="nav-link" to="/course">Courses</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/admission">Admission</a>
@@ -48,13 +53,17 @@ const Navbar = () => {
                 <a className="nav-link" href="/gallery">Gallery</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/login">Login</a>
+                <Link className="nav-link" to="/login">Login</Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
       <Home/>
+      <VisionMission/>
+      <Course/>
+      <PlacementStats/>
+      <Footer/>
     </div>
   );
 };

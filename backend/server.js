@@ -15,6 +15,8 @@ const fs = require('fs');
 const allocation=require('./routes/FacultyAllocation')
 const marquee=require('./routes/Marquee')
 const homeRoute=require('./routes/home')
+const adminfeeroutes=require('./routes/Adminfee')
+const leaveroutes=require('./routes/leaverequest')
 
 
 
@@ -54,6 +56,8 @@ app.use('/circular',circular);
 app.use('/allocation',allocation);
 app.use('/marquee',marquee)
 app.use('/home',homeRoute)
+app.use('/admin',adminfeeroutes)
+app.use('/leave',leaveroutes)
 
 
 app.listen(port, () => {

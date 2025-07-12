@@ -8,7 +8,7 @@ import { Container, Card, Table, Button, Spinner } from 'react-bootstrap';
 const Studentview = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { studata, loading, error } = useSelector((state) => state.students);
+  const { studata, loading} = useSelector((state) => state.students);
 
   useEffect(() => {
     dispatch(getstudentpending());
@@ -42,6 +42,7 @@ const Studentview = () => {
                   <th>Student Code</th>
                   <th>Username</th>
                   <th>Email</th>
+                  <th>Department</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -52,6 +53,7 @@ const Studentview = () => {
                     <td>{student.StudentCode}</td>
                     <td>{student.Username}</td>
                     <td>{student.Email}</td>
+                    <td>{student.Department}</td>
                     <td>
                       <Button 
                         variant="outline-primary" 

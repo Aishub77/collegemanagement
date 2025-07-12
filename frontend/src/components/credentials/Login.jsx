@@ -42,11 +42,11 @@ const LoginPage = () => {
       setIsLoading(false);
       
       if (userRole === 'admin') {
-        navigate('/faculty');
+        navigate('/dashboard');
       } else if (userRole === 'faculty') {
         navigate('/facultyhomepage');
       } else if (userRole === 'student') {
-        navigate('/faculty');
+        navigate('/studenthomepage');
       } else {
         setError('Invalid role detected');
       }
@@ -157,9 +157,9 @@ const LoginPage = () => {
             </button>
           </form>
           
-          <div className="signup-link">
+          {/* <div className="signup-link">
             <p>Don't have an account? <a href="#">Sign Up</a></p>
-          </div>
+          </div> */}
         </div>
       </div>
       

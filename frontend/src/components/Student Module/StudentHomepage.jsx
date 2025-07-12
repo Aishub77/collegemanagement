@@ -3,7 +3,7 @@ import axios from 'axios';
 import logo from '../../assest/whitelogo.png';
 import { useNavigate } from 'react-router-dom';
 
-const FacultyHomepage = () => {
+const StudentHomepage = () => {
   const [username, setUsername] = useState('');
   const [activeModule, setActiveModule] = useState(null);
   const navigate = useNavigate();
@@ -28,19 +28,17 @@ const FacultyHomepage = () => {
       name: 'Circular',
       icon: '📢',
       subModules: [
-        { name: 'View Circulars', path: '/circularview' },
-        { name: 'Create Circular', path: '/circular' }
+        { name: 'View Circulars', path: '/circularview' }
       ]
     },
-    {
-    name: 'Leave Request', 
-    icon: '📝' ,
-     subModules: [
-        { name: 'Leave Form', path: '/leaveform' },
-        { name: 'Leave History', path: '/leavehistory' },
-        { name: 'Leave Approval', path: '/facultyrequests' }
+    { 
+      name: 'Leave', 
+      icon: '📝', 
+      subModules: [
+        { name: 'Request Leave', path: '/leaveform' },
+        { name: 'Leave History', path: '/leavehistory' }
       ]
-      }
+    }
   ];
 
   const toggleSubModules = (index) => {
@@ -147,7 +145,7 @@ const FacultyHomepage = () => {
             fontWeight: 600,
             marginBottom: '10px'
           }}>
-            Faculty Dashboard
+            Student Portal
           </h1>
           <p style={{ 
             color: '#718096', 
@@ -156,7 +154,7 @@ const FacultyHomepage = () => {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            Manage your academic activities, circulars, and leave requests in one place
+            Access your academic information and college services
           </p>
         </div>
 
@@ -165,7 +163,9 @@ const FacultyHomepage = () => {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '30px',
-          padding: '0 10px'
+          padding: '0 10px',
+          maxWidth: '600px',
+          margin: '0 auto'
         }}>
           {modules.map((mod, index) => (
             <div key={index} style={{ 
@@ -338,4 +338,4 @@ const FacultyHomepage = () => {
   );
 };
 
-export default FacultyHomepage;
+export default StudentHomepage;

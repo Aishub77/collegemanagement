@@ -11,7 +11,6 @@ import {
   ChevronDown,
   ChevronUp,
   BoxArrowRight,
-  HouseDoorFill
 } from 'react-bootstrap-icons';
 
 const Sidebar = () => {
@@ -58,45 +57,58 @@ const Sidebar = () => {
     }
   };
 
-  // Only show navigation menus for admin users
   const isAdmin = userData.role.toLowerCase() === 'admin';
 
   return (
-    <div className="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white" style={{ width: '280px', minHeight: '100vh' }}>
-      {/* University Logo/Title */}
-      <div className="d-flex align-items-center justify-content-center mb-4 mt-2">
-        <HouseDoorFill className="fs-3 me-2 text-primary" />
-        <span className="fs-4 fw-bold text-white">College</span>
-      </div>
-      <hr className="border-light opacity-50" />
-
-      {/* User Profile Section */}
+    <div
+      className="d-flex flex-column flex-shrink-0 text-white shadow"
+      style={{
+        width: '280px',
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #1f1c2c, #928dab)',
+        padding: '1.5rem 1rem',
+        borderTopRightRadius: '1rem',
+        borderBottomRightRadius: '1rem'
+      }}
+    >
       <div className="text-center mb-4">
-        <div className="d-flex justify-content-center mb-3">
-          <div className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center shadow"
-            style={{ width: '80px', height: '80px', fontSize: '2rem' }}>
-            {userData.username.charAt(0).toUpperCase()}
-          </div>
+        <h4 className="fw-bold mb-0" style={{ letterSpacing: '0.5px' }}>
+          CrownRidge Arts & Science
+        </h4>
+      </div>
+
+      <div className="text-center mb-4">
+        <div
+          className="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center shadow"
+          style={{
+            width: '80px',
+            height: '80px',
+            fontSize: '2rem',
+            margin: '0 auto'
+          }}
+        >
+          {userData.username.charAt(0).toUpperCase()}
         </div>
-        <h5 className="mb-2 fw-normal">{userData.username}</h5>
-        <span className={`badge rounded-pill ${getRoleBadgeClass()} px-3 py-1 fw-medium`} style={{ fontSize: '0.85rem' }}>
+        <h6 className="mt-3 mb-1 text-capitalize">{userData.username}</h6>
+        <span
+          className={`badge rounded-pill ${getRoleBadgeClass()} px-3 py-1`}
+          style={{ fontSize: '0.8rem' }}
+        >
           {userData.role}
         </span>
       </div>
-      <hr className="border-light opacity-50" />
 
-      {/* Main Navigation - Only visible to admin */}
       {isAdmin && (
-        <ul className="nav nav-pills flex-column mb-auto">
+        <ul className="nav flex-column mb-auto">
           {[
             {
               id: 'credentials',
               title: 'Manage Credentials',
               icon: <GearFill className="me-3 fs-5" />,
               items: [
-                { path: '/register', label: 'Create Register', icon: <PersonPlusFill className="me-2" /> },    
-                { path: '/profile', label: 'profile', icon: <PersonPlusFill className="me-2" /> },
-                { path: '/Addclass', label: 'sectioncreation', icon: <PersonPlusFill className="me-2" /> }
+                { path: '/register', label: 'Create Register', icon: <PersonPlusFill className="me-2" /> },
+                { path: '/profile', label: 'Profile', icon: <PersonPlusFill className="me-2" /> },
+                { path: '/Addclass', label: 'Section Creation', icon: <PersonPlusFill className="me-2" /> }
               ]
             },
             {
@@ -129,52 +141,55 @@ const Sidebar = () => {
               title: 'Enrollment & Onboarding',
               icon: <CardChecklist className="me-3 fs-5" />,
               items: [
-                { path: '/admission', label: 'Admission Register', icon: <CardChecklist className="me-2 text-" /> },
-                { path: '/Instruction', label: 'Application Handling', icon: <CardChecklist className="me-2 text-" /> }
+                { path: '/admission', label: 'Admission Register', icon: <CardChecklist className="me-2" /> },
+                { path: '/Instruction', label: 'Application Handling', icon: <CardChecklist className="me-2" /> }
               ]
             },
             {
               id: 'AppList',
               title: 'Application Details',
-              icon: <CardChecklist className="me-3 fs-5"/>,
+              icon: <CardChecklist className="me-3 fs-5" />,
               items: [
                 { path: '/Appdetails', label: 'Applied List', icon: <CardChecklist className="me-2" /> },
-                { path: '/feedetails', label: 'Fee structure List', icon: <CardChecklist className="me-2" /> },
-                { path: '/circular', label: 'circular', icon: <CardChecklist className="me-2" /> },
-                { path: '/circularview', label: 'circularview', icon: <CardChecklist className="me-2" /> }
+                { path: '/feedetails', label: 'Fee Structure List', icon: <CardChecklist className="me-2" /> },
+                { path: '/circular', label: 'Circular', icon: <CardChecklist className="me-2" /> },
+                { path: '/circularview', label: 'Circular View', icon: <CardChecklist className="me-2" /> }
               ]
             }
           ].map((menu) => (
-            <li className="nav-item mb-1" key={menu.id}>
+            <li key={menu.id} className="mb-1">
               <button
-                className={`nav-link text-white d-flex justify-content-between align-items-center w-100 ${openMenu === menu.id ? 'active bg-opacity-10' : ''
+                className={`nav-link text-white d-flex justify-content-between align-items-center w-100 ${openMenu === menu.id ? 'bg-white bg-opacity-10' : 'bg-transparent'
                   }`}
                 onClick={() => toggleMenu(menu.id)}
                 style={{
-                  padding: '0.5rem 1rem',
-                  borderRadius: '0.375rem',
-                  transition: 'all 0.2s'
+                  padding: '0.6rem 1rem',
+                  borderRadius: '0.5rem',
+                  fontSize: '0.9rem',
+                  fontWeight: '500',
+                  transition: 'all 0.2s ease'
                 }}
               >
                 <span className="d-flex align-items-center">
                   {menu.icon}
-                  <span className="fs-6">{menu.title}</span>
+                  {menu.title}
                 </span>
                 {openMenu === menu.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
               </button>
               {openMenu === menu.id && (
-                <ul className="nav flex-column ps-4 mt-1" style={{ borderLeft: '2px solid rgba(255,255,255,0.1)' }}>
+                <ul className="nav flex-column ps-4 mt-1">
                   {menu.items.map((item) => (
                     <li key={item.path}>
                       <Link
                         to={item.path}
-                        className="nav-link text-white-50 d-flex align-items-center py-2 ps-3"
+                        className="nav-link text-white d-flex align-items-center py-2 ps-3"
                         style={{
                           fontSize: '0.85rem',
                           borderRadius: '0.375rem',
-                          transition: 'all 0.2s'
+                          transition: 'all 0.2s',
+                          fontWeight: '400'
                         }}
-                        activeClassName="active text-white bg-opacity-10" >
+                      >
                         {item.icon}
                         {item.label}
                       </Link>
@@ -187,22 +202,21 @@ const Sidebar = () => {
         </ul>
       )}
 
-      <hr className="border-light opacity-50 mt-auto mb-3" />
-
-      {/* Logout Section */}
-      <div className="d-flex align-items-center justify-content-between px-2">
+      <div className="mt-auto pt-3 d-flex align-items-center justify-content-between">
         <button
           className="btn btn-outline-light btn-sm d-flex align-items-center"
           onClick={handleLogout}
           style={{
-            padding: '0.25rem 0.75rem',
-            borderRadius: '0.375rem'
+            padding: '0.4rem 0.75rem',
+            borderRadius: '0.375rem',
+            fontWeight: '500',
+            fontSize: '0.85rem'
           }}
         >
           <BoxArrowRight className="me-2" />
-          <span>Sign Out</span>
+          Sign Out
         </button>
-        <small className="text-muted">v1.0.0</small>
+        <small className="text-white-50">v1.0.0</small>
       </div>
     </div>
   );

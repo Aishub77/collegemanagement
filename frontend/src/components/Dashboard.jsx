@@ -2,6 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
+
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#00C49F', '#0088FE', '#d0ed57', '#a4de6c'];
 
 const Dashboard = () => {
   const [years, setYears] = useState([]);
@@ -9,11 +19,15 @@ const Dashboard = () => {
   const [applicationCount, setApplicationCount] = useState(0);
   const [activeStudentCount, setActiveStudentCount] = useState(0);
   const [activeFacultyCount, setActiveFacultyCount] = useState(0);
+  
+  // ✅ NEW - Department Chart Data
+  const [departmentData, setDepartmentData] = useState([]);
 
   useEffect(() => {
     fetchYears();
     fetchActiveStudents();
     fetchActiveFaculty();
+    fetchStudentCountByDepartment(); // ✅
   }, []);
 
   const fetchYears = async () => {
@@ -53,6 +67,16 @@ const Dashboard = () => {
       setApplicationCount(res.data.TotalApplications);
     } catch (err) {
       console.error('Error fetching applications:', err);
+    }
+  };
+
+  // ✅ NEW FUNCTION
+  const fetchStudentCountByDepartment = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/dashboard/summary/department-wise-count');
+      setDepartmentData(res.data);
+    } catch (err) {
+      console.error('Error fetching department data:', err);
     }
   };
 
@@ -102,6 +126,36 @@ const Dashboard = () => {
             </option>
           ))}
         </select>
+      </div>
+
+      {/* ✅ DEPARTMENT PIE CHART SECTION */}
+      <div className="mt-5">
+        <h5 className="mb-4 text-center">📊 Student Count by Department</h5>
+        <ResponsiveContainer width="100%" height={350}>
+          <PieChart>
+            <Pie
+              data={departmentData}
+              dataKey="Count"
+              nameKey="Department"
+              cx="50%"
+              cy="50%"
+              outerRadius={120}
+              fill="#8884d8"
+              label={({ name, percent }) =>
+                `${name} (${(percent * 100).toFixed(0)}%)`
+              }
+            >
+              {departmentData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend verticalAlign="bottom" />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

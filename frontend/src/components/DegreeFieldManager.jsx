@@ -23,37 +23,41 @@ const DegreeFieldManager = () => {
   }, [dispatch])
 
 
-  const handleAddDegree = async () => {
-    if (!newDegree.trim()) return toast.warn('Enter a degree name');
-    try {
-      const res = await axios.post('http://localhost:5000/degree/degreepost', { name: newDegree });
-      dispatch(getdegreesuccess([...degree, res.data]));
-      toast.success('Degree added');
-      setNewDegree('');
-      // fetchDegrees();
-    } catch (error) {
-      toast.error('Error adding degree');
-    }
-  };
+const handleAddDegree = async () => {
+  if (!newDegree.trim()) return toast.warn('Enter a degree name');
+  try {
+    await axios.post('http://localhost:5000/degree/degreepost', { name: newDegree });
 
-  const handleAddField = async () => {
-    if (!newField.trim() || !selectedDegreeId) {
-      return toast.warn('Select a degree and enter field name');
-    }
-    try {
-      const res = await axios.post('http://localhost:5000/Field/fieldpost', {
-        name: newField,
-        degreeId: selectedDegreeId
-      });
-      dispatch(getfieldsuccess([...Field, res.data]));
-      toast.success('Field added');
-      setNewField('');
-      setSelectedDegreeId('');
-      // fetchFields();
-    } catch (error) {
-      toast.error('Error adding field');
-    }
-  };
+    // ✅ Re-fetch from DB after successful insert
+    dispatch(getdegreepending());
+
+    toast.success('Degree added');
+    setNewDegree('');
+  } catch (error) {
+    toast.error('Error adding degree');
+  }
+};
+
+const handleAddField = async () => {
+  if (!newField.trim() || !selectedDegreeId) {
+    return toast.warn('Select a degree and enter field name');
+  }
+  try {
+    await axios.post('http://localhost:5000/Field/fieldpost', {
+      name: newField,
+      degreeId: selectedDegreeId
+    });
+
+    // ✅ Re-fetch from DB after successful insert
+    dispatch(getfieldpending());
+
+    toast.success('Field added');
+    setNewField('');
+    setSelectedDegreeId('');
+  } catch (error) {
+    toast.error('Error adding field');
+  }
+};
 
   const handleEditDegree = async (selectedDegree) => {
     const newName = prompt('Edit Degree Name:', selectedDegree.DegreeName);
