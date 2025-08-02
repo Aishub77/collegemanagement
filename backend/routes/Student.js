@@ -19,7 +19,7 @@ router.get('/getstudent', async (req, res) => {
   try {
     const pool = await sql.connect();
     const result = await pool.request().query(`
-      SELECT StudentCode, Username, Email,Department FROM Student
+      SELECT StudentCode, Username, Email,Department, ProfilePicture FROM Student
     `);
     res.json(result.recordset);
   } catch (err) {

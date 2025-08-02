@@ -107,8 +107,8 @@ const Sidebar = () => {
               icon: <GearFill className="me-3 fs-5" />,
               items: [
                 { path: '/register', label: 'Create Register', icon: <PersonPlusFill className="me-2" /> },
-                { path: '/profile', label: 'Profile', icon: <PersonPlusFill className="me-2" /> },
-                { path: '/Addclass', label: 'Section Creation', icon: <PersonPlusFill className="me-2" /> }
+                // { path: '/profile', label: 'Profile', icon: <PersonPlusFill className="me-2" /> }
+            
               ]
             },
             {
@@ -133,16 +133,8 @@ const Sidebar = () => {
               title: 'Manage Courses',
               icon: <JournalBookmark className="me-3 fs-5" />,
               items: [
-                { path: '/degree', label: 'Create & Manage Courses', icon: <JournalBookmark className="me-2" /> }
-              ]
-            },
-            {
-              id: 'enrollment',
-              title: 'Enrollment & Onboarding',
-              icon: <CardChecklist className="me-3 fs-5" />,
-              items: [
-                { path: '/admission', label: 'Admission Register', icon: <CardChecklist className="me-2" /> },
-                { path: '/Instruction', label: 'Application Handling', icon: <CardChecklist className="me-2" /> }
+                { path: '/degree', label: 'Create & Manage Courses', icon: <JournalBookmark className="me-2" /> },
+               { path: '/Addclass', label: 'Section Creation', icon: <PersonPlusFill className="me-2" /> }
               ]
             },
             {
@@ -152,6 +144,14 @@ const Sidebar = () => {
               items: [
                 { path: '/Appdetails', label: 'Applied List', icon: <CardChecklist className="me-2" /> },
                 { path: '/feedetails', label: 'Fee Structure List', icon: <CardChecklist className="me-2" /> },
+                { path: '/feecomponent', label: 'Fee Component', icon: <CardChecklist className="me-2" /> },
+                { path: '/payment', label: 'Fee Payment', icon: <CardChecklist className="me-2" /> },
+              ]
+            },     {
+              id: 'circular',
+              title: 'Circular Details',
+              icon: <CardChecklist className="me-3 fs-5" />,
+              items: [
                 { path: '/circular', label: 'Circular', icon: <CardChecklist className="me-2" /> },
                 { path: '/circularview', label: 'Circular View', icon: <CardChecklist className="me-2" /> }
               ]

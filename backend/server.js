@@ -17,6 +17,7 @@ const marquee=require('./routes/Marquee')
 const homeRoute=require('./routes/home')
 const adminfeeroutes=require('./routes/Adminfee')
 const leaveroutes=require('./routes/leaverequest')
+const paymentroutes=require('./routes/feepayment')
 
 
 
@@ -58,6 +59,7 @@ app.use('/marquee',marquee)
 app.use('/home',homeRoute)
 app.use('/admin',adminfeeroutes)
 app.use('/leave',leaveroutes)
+app.use('/payment',paymentroutes)
 
 
 app.listen(port, () => {

@@ -57,7 +57,7 @@ router.get('/summary/applications-by-year/:year', async (req, res) => {
 router.get('/summary/student-count-by-department', async (req, res) => {
   try {
     const pool = await sql.connect(config);
-    
+
     const result = await pool.request().query(`
       SELECT Department, COUNT(*) AS Count
       FROM Student
@@ -73,18 +73,18 @@ router.get('/summary/student-count-by-department', async (req, res) => {
   }
 });
 
-
+// department-wise count of student  and faculty
 router.get('/summary/department-wise-count', async (req, res) => {
   try {
     const pool = await sql.connect(/* your DB config */);
     const result = await pool.request().query(`
       SELECT 
-        COALESCE(S.Department, F.Department) AS Department,
-        COUNT(DISTINCT S.StudentCode) AS StudentCount,
-        COUNT(DISTINCT F.FacultyCode) AS FacultyCount
-      FROM Student S
-      FULL JOIN Faculty F ON S.Department = F.Department
-      GROUP BY COALESCE(S.Department, F.Department)
+  COALESCE(S.Department, F.Department) AS Department,
+  COUNT(DISTINCT CASE WHEN S.Status = 'Active' THEN S.StudentCode END) AS StudentCount,
+  COUNT(DISTINCT CASE WHEN F.Status = 'Active' THEN F.FacultyCode END) AS FacultyCount
+FROM Student S
+FULL JOIN Faculty F ON S.Department = F.Department
+GROUP BY COALESCE(S.Department, F.Department)
     `);
     res.json(result.recordset);
   } catch (err) {

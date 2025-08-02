@@ -12,7 +12,7 @@ const Footer = () => {
           <h4>Address</h4>
           <p>
             CrownRidge Campus, Pollachi Road,<br />
-            Eachanari, Coimbatore, Tamil Nadu, India - 641021.
+            Coimbatore, Tamil Nadu, India - 641021.
           </p>
         </div>
 
@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom-bar">
-        © 2025 <span className="brand">Rankuhigher</span>. All Rights Reserved.
+        © 2025 <span className="brand">CrownRidge</span>.All Rights Reserved.
       </div>
     </div>
   );

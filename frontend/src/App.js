@@ -9,7 +9,7 @@ import Studentview from './components/Student Module/Studentview';
 import StudentEdit from './components/Student Module/StudentEdit';
 import ApplicationForm from './components/Admission/ApplicationForm';
 import AppList from '../src/components/Admission/AppList'
-import FeeStructureManager from './components/FeeStructureManager';
+import FeeStructureManager from '../src/components/Fee Module/FeeStructureManager';
 import Dashboard from './components/Dashboard';
 import AdmissionRegister from '../src/components/Admission/AdmisssionRegister';
 import AdminCircularForm from './components/Circular/AdminCircularForm';
@@ -20,9 +20,9 @@ import ProfileComponent from './components/ProfileComponent';
 import AddSectionForm from './components/AddSectionForm';
 import Navbar from './Website/Navbar';
 import AdminHomeEdit from './Website/AdminHomeEdit';
-import FeeComponentManager from './components/FeeComponentManager';
-import AdminFeeSearch from './components/AdminFeeSearch';
-import Course from './components/Course';
+import FeeComponentManager from '../src/components/Fee Module/FeeComponentManager';
+import AdminFeeSearch from '../src/components/Fee Module/AdminFeeSearch';
+import Course from './Website/Course';
 import Footer from '../src/Website/Footer';
 import StudentHomepage from './components/Student Module/StudentHomepage';
 import LeaveApplyForm from './components/Leave Module/LeaveApplyForm';
@@ -32,6 +32,7 @@ import StudentLeaveRequests from './components/Leave Module/StudentLeaveRequests
 import RequireRole from './components/Leave Module/RequireRole';
 import VisionMission from './Website/VisionMission';
 import PlacementStats from './Website/PlacementStats';
+import FeeCollection from '../src/components/Fee Module/FeeCollection';
 
 
 
@@ -82,6 +83,7 @@ function App() {
                 <Route path="homeadmin" element={<AdminHomeEdit />} />
                 <Route path="FeeComponent" element={<FeeComponentManager />} />
                 <Route path="adminfeecontrol" element={<AdminFeeSearch />} />
+                <Route path="payment" element={<FeeCollection />} />
                 <Route path="studenthomepage" element={<StudentHomepage />} />
                 {/* //Leave Module Access based on Role  */}
                 <Route path="leaveform"
@@ -127,6 +129,8 @@ function App() {
         <Route path="About" element={<VisionMission />} />
         <Route path="placement" element={<PlacementStats />} />
         <Route path="admission" element={<AdmissionRegister />} />
+        <Route path="payment" element={<FeeCollection />} />
+        <Route path="feecomponent" element={<FeeComponentManager/>} />
         {/* Redirect root to login */}
         {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
         <Route path="/" element={<Navigate to="/Home" replace />} />

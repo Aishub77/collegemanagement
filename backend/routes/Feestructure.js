@@ -119,6 +119,53 @@ router.get('/feestructure/:code', async (req, res) => {
 
 
 
+// router.put('/feestructure/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const {
+//     DegreeID,
+//     FieldID,
+//     YearOfStudy,
+//     FirstYearFee = 0,
+//     SecondYearFee = 0,
+//     ThirdYearFee = 0,
+//     IsActive
+//   } = req.body;
+
+//   try {
+//     await sql.connect(config);
+//     const request = new sql.Request();
+
+//     await request
+//       .input('FeeStructureID', sql.Int, parseInt(id))
+//       .input('DegreeID', sql.Int, parseInt(DegreeID))
+//       .input('FieldID', sql.Int, parseInt(FieldID))
+//       .input('YearOfStudy', sql.VarChar(10), YearOfStudy)
+//       .input('FirstYearFee', sql.Decimal(10, 2), parseFloat(FirstYearFee))
+//       .input('SecondYearFee', sql.Decimal(10, 2), parseFloat(SecondYearFee))
+//       .input('ThirdYearFee', sql.Decimal(10, 2), parseFloat(ThirdYearFee))
+//       .input('IsActive', sql.Bit, IsActive === true || IsActive === 'true')
+//       .query(`
+//         UPDATE FeeStructure
+//         SET 
+//           DegreeID = @DegreeID,
+//           FieldID = @FieldID,
+//           YearOfStudy = @YearOfStudy,
+//           FirstYearFee = @FirstYearFee,
+//           SecondYearFee = @SecondYearFee,
+//           ThirdYearFee = @ThirdYearFee,
+//           IsActive = @IsActive,
+//           LastModified = GETDATE()
+//         WHERE FeeStructureID = @FeeStructureID
+//       `);
+
+//     res.json({ message: 'Fee structure updated successfully' });
+//   } catch (err) {
+//     console.error('Error updating fee structure:', err);
+//     res.status(500).json({ message: 'Error updating fee structure', error: err.message });
+//   }
+// });
+
+
 router.put('/feestructure/:id', async (req, res) => {
   const { id } = req.params;
   const {
@@ -128,7 +175,8 @@ router.put('/feestructure/:id', async (req, res) => {
     FirstYearFee = 0,
     SecondYearFee = 0,
     ThirdYearFee = 0,
-    IsActive
+    IsActive,
+    MandatoryComponentIDs = ''
   } = req.body;
 
   try {
@@ -139,10 +187,11 @@ router.put('/feestructure/:id', async (req, res) => {
       .input('FeeStructureID', sql.Int, parseInt(id))
       .input('DegreeID', sql.Int, parseInt(DegreeID))
       .input('FieldID', sql.Int, parseInt(FieldID))
-      .input('YearOfStudy', sql.VarChar(10), YearOfStudy)
+      .input('YearOfStudy', sql.VarChar(50), YearOfStudy)
       .input('FirstYearFee', sql.Decimal(10, 2), parseFloat(FirstYearFee))
       .input('SecondYearFee', sql.Decimal(10, 2), parseFloat(SecondYearFee))
       .input('ThirdYearFee', sql.Decimal(10, 2), parseFloat(ThirdYearFee))
+      .input('MandatoryComponentIDs', sql.NVarChar(255), MandatoryComponentIDs)
       .input('IsActive', sql.Bit, IsActive === true || IsActive === 'true')
       .query(`
         UPDATE FeeStructure
@@ -153,18 +202,18 @@ router.put('/feestructure/:id', async (req, res) => {
           FirstYearFee = @FirstYearFee,
           SecondYearFee = @SecondYearFee,
           ThirdYearFee = @ThirdYearFee,
+          MandatoryComponentIDs = @MandatoryComponentIDs,
           IsActive = @IsActive,
           LastModified = GETDATE()
         WHERE FeeStructureID = @FeeStructureID
       `);
 
-    res.json({ message: 'Fee structure updated successfully' });
+    res.json({ message: '✅ Fee structure updated successfully' });
   } catch (err) {
-    console.error('Error updating fee structure:', err);
+    console.error('❌ Error updating fee structure:', err);
     res.status(500).json({ message: 'Error updating fee structure', error: err.message });
   }
 });
-
 
 // Delete fee structure
 router.delete('/deletefeestructure/:id', async (req, res) => {

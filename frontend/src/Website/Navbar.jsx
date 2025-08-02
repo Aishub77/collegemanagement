@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/Navbar.css'
+import '../css/Navbar.css';
 import logo from '../assest/newlogo1.png'; // Replace with your logo
 import Home from './Home';
-import Course from '../components/Course';
+import Course from './Course';
 import VisionMission from './VisionMission';
 import { Link } from 'react-router-dom';
 import PlacementStats from './PlacementStats';
@@ -32,25 +32,19 @@ const Navbar = () => {
           <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul className="navbar-nav text-center">
               <li className="nav-item">
-                <a className="nav-link" href="/">Home</a>
+                <a className="nav-link" href="#home">Home</a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/About">About Us</Link>
+                <a className="nav-link" href="#about">About Us</a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/course">Courses</Link>
+                <a className="nav-link" href="#course">Courses</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/admission">Admission</a>
+               <Link className="nav-link" to="/admission">Admission</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/placement">Placements</a>
-              </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="/facilities">Campus Life</a>
-              </li> */}
-              <li className="nav-item">
-                <a className="nav-link" href="/gallery">Gallery</a>
+                <a className="nav-link" href="#placement">Placements</a>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
@@ -59,11 +53,29 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Home/>
-      <VisionMission/>
-      <Course/>
-      <PlacementStats/>
-      <Footer/>
+
+      {/* Section Wrappers with IDs for smooth scrolling */}
+      <div id="home">
+        <Home />
+      </div>
+      <div id="about">
+        <VisionMission />
+      </div>
+      <div id="course">
+        <Course />
+      </div>
+      <div id="placement">
+        <PlacementStats />
+      </div>
+      {/* <div id="admission"> */}
+        {/* Add your admission component here if any, or dummy content */}
+        {/* <div className="p-5 text-center bg-light">
+          <h2>Admission Section</h2>
+          <p>Admission information goes here...</p>
+        </div>
+      </div> */}
+
+      <Footer />
     </div>
   );
 };
